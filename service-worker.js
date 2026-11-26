@@ -4,7 +4,7 @@
  */
 'use strict';
 
-const CACHE_VERSION = 'maqraa-al-sulami-v1.0.1';
+const CACHE_VERSION = 'maqraa-al-sulami-v1.0.2';
 const APP_SHELL_CACHE = `${CACHE_VERSION}-shell`;
 const QURAN_DATA_CACHE = `${CACHE_VERSION}-quran-data`;
 const AUDIO_MEDIA_CACHE = `${CACHE_VERSION}-audio-media`;
@@ -64,6 +64,43 @@ self.addEventListener('message', (event) => {
     })());
   }
 });
+
+function rewriteHtmlSecurity(response) {
+  // إصلاح سياسة CSP داخل HTML وقت تقديم الصفحة، دون استبدال ملف index.html
+  // أو المخاطرة بفقد أجزاء منه. يتم حفظ النسخة المعدلة في كاش التطبيق.
+  return (async () => {
+    if (!response || !response.ok) return response;
+    const type = response.headers.get('content-type') || '';
+    if (!type.includes('text/html')) return response;
+
+    const html = await response.text();
+    const policy = [
+      "default-src 'self' data: blob:",
+      "script-src 'self' 'unsafe-inline'",
+      "style-src 'self' 'unsafe-inline'",
+      "img-src 'self' data: blob: https://cdn.islamic.network",
+      "media-src 'self' blob: https://server8.mp3quran.net https://server10.mp3quran.net https://server11.mp3quran.net https://server12.mp3quran.net https://server13.mp3quran.net https://server6.mp3quran.net https://cdn.islamic.network https://everyayah.com",
+      "connect-src 'self' https://api.alquran.cloud https://cdn.islamic.network https://server8.mp3quran.net https://server10.mp3quran.net https://server11.mp3quran.net https://server12.mp3quran.net https://server13.mp3quran.net https://server6.mp3quran.net https://everyayah.com",
+      "font-src 'self' data:",
+      "object-src 'none'",
+      "base-uri 'self'",
+      "manifest-src 'self' data:"
+    ].join('; ');
+
+    const patched = html.replace(
+      /<meta\\s+http-equiv=(["'])Content-Security-Policy\\1\\s+content=(["'])[^]*?\\2\\s*\\/?>(?=\\s*<)/i,
+      '<meta http-equiv="Content-Security-Policy" content="' + policy + '">'
+    );
+
+    const headers = new Headers(response.headers);
+    headers.delete('content-length');
+    return new Response(patched, {
+      status: response.status,
+      statusText: response.statusText,
+      headers
+    });
+  })();
+}
 
 function isAllowedUrl(url) {
   if (url.protocol !== 'https:' && url.protocol !== 'http:') return false;
