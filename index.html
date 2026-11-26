@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f3d2e" />
+  <meta name="description" content="مقرأة أبو نجيب السلمي لتحفيظ القرآن الكريم — مقرأة إلكترونية مجانية للقراءة والحفظ والمراجعة والتفسير والتلاوة الصوتية مع دعم العمل دون إنترنت." />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="مقرأة السلمي" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: blob:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://cdn.islamic.network; media-src 'self' blob: https://server8.mp3quran.net https://server12.mp3quran.net https://server6.mp3quran.net https://cdn.islamic.network; connect-src 'self' https://api.alquran.cloud https://cdn.islamic.network https://server8.mp3quran.net https://server12.mp3quran.net https://server6.mp3quran.net; font-src 'self' data:; object-src 'none'; base-uri 'self';" />
+  <title>مقرأة أبو نجيب السلمي لتحفيظ القرآن الكريم</title>
+  <link id="pwa-manifest-link" rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22%D9%85%D9%82%D8%B1%D8%A3%D8%A9%20%D8%A3%D8%A8%D9%88%20%D9%86%D8%AC%D9%8A%D8%A8%20%D8%A7%D9%84%D8%B3%D9%84%D9%85%D9%8A%20%D9%84%D8%AA%D8%AD%D9%81%D9%8A%D8%B8%20%D8%A7%D9%84%D9%82%D8%B1%D8%A2%D9%86%20%D8%A7%D9%84%D9%83%D8%B1%D9%8A%D9%85%22%2C%22short_name%22%3A%22%D9%85%D9%82%D8%B1%D8%A3%D8%A9%20%D8%A7%D9%84%D8%B3%D9%84%D9%85%D9%8A%22%2C%22start_url%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f6f2e7%22%2C%22theme_color%22%3A%22%230f3d2e%22%2C%22dir%22%3A%22rtl%22%2C%22lang%22%3A%22ar%22%7D" />
+  <link rel="icon" type="image/svg+xml" href="./icon.svg" />
+  <link rel="apple-touch-icon" href="./icon-192.png" />
+
+  <style>
+    :root {
+      --bg-primary: #f6f2e7;
+      --bg-secondary: #fffdf8;
+      --bg-elevated: #efe9d8;
+      --text-primary: #1a2621;
+      --text-secondary: #485b53;
+      --accent-primary: #0f3d2e;
+      --accent-secondary: #1b5e47;
+      --accent-gold: #b6882e;
+      --accent-gold-soft: rgba(182, 136, 46, 0.14);
+      --border-color: #d8ceb8;
+      --success-color: #1f6f4a;
+      --warning-color: #9c6214;
+      --danger-color: #9e2a2b;
+      --shadow-sm: 0 2px 8px rgba(15, 61, 46, 0.06);
+      --shadow-md: 0 8px 24px rgba(15, 61, 46, 0.10);
+      --quran-font-size: 1.75rem;
+      --quran-line-height: 2.35;
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 22px;
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: #0e1714;
+      --bg-secondary: #15221d;
+      --bg-elevated: #1c2d26;
+      --text-primary: #eef3f0;
+      --text-secondary: #b0c2ba;
+      --accent-primary: #27785b;
+      --accent-secondary: #349673;
+      --accent-gold: #dfb354;
+      --accent-gold-soft: rgba(223, 179, 84, 0.15);
+      --border-color: #293e35;
+      --success-color: #36a370;
+      --warning-color: #e09f3e;
+      --danger-color: #e05a5d;
+      --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.35);
+      --shadow-md: 0 10px 28px rgba(0, 0, 0, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: "Amiri", "Scheherazade New", "Noto Naskh Arabic", "Traditional Arabic", "Tahoma", sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+      min-height: 100vh;
+      padding-bottom: 112px;
+      transition: background-color 0.25s ease, color 0.25s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      color: inherit;
+    }
+
+    button {
+      cursor: pointer;
+      border: 1px solid transparent;
+      background: transparent;
+      border-radius: var(--radius-sm);
+      transition: transform 0.14s ease, background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    button:focus-visible, input:focus-visible, select:focus-visible {
+      outline: 3px solid var(--accent-gold);
+      outline-offset: 2px;
+    }
+
+    .network-banner {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 16px;
+      background: var(--warning-color);
+      color: #ffffff;
+      font-size: 0.95rem;
+      font-weight: 700;
+      position: sticky;
+      top: 0;
+      z-index: 1200;
+    }
+
+    .network-banner.offline {
+      display: flex;
+    }
+
+    .app-header {
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      color: #ffffff;
+      padding: 18px 16px 22px;
+      border-bottom: 3px solid var(--accent-gold);
+      box-shadow: var(--shadow-md);
+    }
+
+    .header-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .brand-box {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-badge {
+      width: 54px;
+      height: 54px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1.5px solid var(--accent-gold);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .brand-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .brand-subtitle {
+      font-size: 0.9rem;
+      color: #f6e7be;
+      margin-top: 2px;
+    }
+
+    .header-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.14);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      text-decoration: none;
+    }
+
+    .btn-pill:hover {
+      background: rgba(255, 255, 255, 0.24);
+    }
+
+    .btn-whatsapp {
+      background: #198754;
+      border-color: #7ee2b1;
+      color: #ffffff;
+    }
+
+    .btn-whatsapp:hover {
+      background: #157347;
+    }
+
+    .main-nav-wrap {
+      max-width: 1120px;
+      margin: -14px auto 0;
+      padding: 0 14px;
+      position: relative;
+      z-index: 20;
+    }
+
+    .main-nav {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      background: var(--bg-secondary);
+      padding: 8px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-tab {
+      padding: 12px 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      border-radius: var(--radius-sm);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      min-height: 58px;
+    }
+
+    .nav-tab.active {
+      background: var(--accent-primary);
+      color: #ffffff;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 18px auto 0;
+      padding: 0 14px;
+    }
+
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    .card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 16px;
+    }
+
+    .card-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .card-title {
+      font-size: 1.18rem;
+      font-weight: 700;
+      color: var(--accent-primary);
+    }
+
+    .bookmark-strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: var(--accent-gold-soft);
+      border: 1px solid var(--accent-gold);
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+      margin-bottom: 16px;
+    }
+
+    .controls-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field-label {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+    }
+
+    select, input[type="search"], input[type="text"], input[type="number"] {
+      width: 100%;
+      padding: 11px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-size: 1rem;
+      min-height: 44px;
+    }
+
+    .toolbar-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 14px;
+      min-height: 44px;
+      border-radius: var(--radius-sm);
+      font-size: 0.96rem;
+      font-weight: 700;
+      border: 1px solid var(--border-color);
+      background: var(--bg-elevated);
+      color: var(--text-primary);
+    }
+
+    .btn:hover {
+      border-color: var(--accent-primary);
+    }
+
+    .btn-primary {
+      background: var(--accent-primary);
+      color: #ffffff;
+      border-color: var(--accent-primary);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-secondary);
+    }
+
+    .btn-gold {
+      background: var(--accent-gold);
+      color: #ffffff;
+      border-color: var(--accent-gold);
+    }
+
+    .btn-danger {
+      background: transparent;
+      color: var(--danger-color);
+      border-color: var(--danger-color);
+    }
+
+    .btn-success {
+      background: var(--success-color);
+      color: #ffffff;
+      border-color: var(--success-color);
+    }
+
+    .surah-banner {
+      text-align: center;
+      padding: 18px 14px;
+      background: linear-gradient(180deg, var(--accent-gold-soft), transparent);
+      border: 1px solid var(--accent-gold);
+      border-radius: var(--radius-md);
+      margin-bottom: 16px;
+    }
+
+    .surah-name-ar {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--accent-primary);
+    }
+
+    .surah-meta {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    .bismillah {
+      font-family: "Amiri", "Scheherazade New", "Noto Naskh Arabic", serif;
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: var(--accent-primary);
+      margin-top: 10px;
+    }
+
+    .ayah-item {
+      padding: 16px;
+      border-bottom: 1px dashed var(--border-color);
+      border-radius: var(--radius-sm);
+      transition: background-color 0.2s ease;
+    }
+
+    .ayah-item:last-child {
+      border-bottom: none;
+    }
+
+    .ayah-item.active-ayah {
+      background: var(--accent-gold-soft);
+      border: 1px solid var(--accent-gold);
+    }
+
+    .ayah-text-wrap {
+      font-family: "Scheherazade New", "Amiri", "Noto Naskh Arabic", "Traditional Arabic", serif;
+      font-size: var(--quran-font-size);
+      line-height: var(--quran-line-height);
+      text-align: right;
+      cursor: pointer;
+      word-spacing: 2px;
+    }
+
+    .ayah-number-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 34px;
+      height: 34px;
+      padding: 0 8px;
+      margin: 0 6px;
+      border-radius: 50%;
+      background: var(--accent-gold-soft);
+      border: 1.5px solid var(--accent-gold);
+      color: var(--accent-primary);
+      font-size: 0.95rem;
+      font-weight: 700;
+      vertical-align: middle;
+    }
+
+    .ayah-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: 10px;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+    }
+
+    .ayah-btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .mini-btn {
+      padding: 6px 10px;
+      min-height: 36px;
+      font-size: 0.86rem;
+      border-radius: 8px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-color);
+      font-weight: 700;
+    }
+
+    .tafsir-box {
+      margin-top: 12px;
+      padding: 14px 16px;
+      background: var(--bg-elevated);
+      border-right: 4px solid var(--accent-primary);
+      border-radius: var(--radius-sm);
+      font-size: 1.02rem;
+      line-height: 1.85;
+    }
+
+    .tafsir-source-tag {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 0.85rem;
+      color: var(--accent-primary);
+      font-weight: 700;
+    }
+
+    .search-results-list {
+      margin-top: 12px;
+      max-height: 420px;
+      overflow-y: auto;
+    }
+
+    .search-result-item {
+      padding: 12px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      margin-bottom: 8px;
+      background: var(--bg-primary);
+      cursor: pointer;
+    }
+
+    .search-result-item:hover {
+      border-color: var(--accent-primary);
+    }
+
+    .hifz-stage {
+      padding: 20px;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      margin: 14px 0;
+    }
+
+    .hidden-ayah-mask {
+      padding: 22px 16px;
+      text-align: center;
+      background: var(--bg-elevated);
+      border: 2px dashed var(--accent-gold);
+      border-radius: var(--radius-sm);
+      color: var(--text-secondary);
+      font-weight: 700;
+      margin: 10px 0;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 14px;
+      background: var(--bg-elevated);
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      margin: 8px 0;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent-primary), var(--accent-gold));
+      transition: width 0.3s ease;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin: 12px 0;
+    }
+
+    .stat-box {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--accent-primary);
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .audio-dock {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--bg-secondary);
+      border-top: 2px solid var(--accent-gold);
+      box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.14);
+      padding: 10px 14px;
+      z-index: 950;
+    }
+
+    .audio-dock-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .audio-info {
+      min-width: 180px;
+      flex: 1;
+    }
+
+    .audio-now-playing {
+      font-weight: 700;
+      font-size: 0.98rem;
+      color: var(--accent-primary);
+    }
+
+    .audio-sub-status {
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+    }
+
+    .audio-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 92px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--accent-primary);
+      color: #ffffff;
+      padding: 11px 18px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      box-shadow: var(--shadow-md);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      z-index: 1500;
+      max-width: 92vw;
+      text-align: center;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .notice-box {
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-color);
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      margin-top: 10px;
+    }
+
+    @media (max-width: 640px) {
+      .main-nav {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .brand-title {
+        font-size: 1.15rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="networkBanner" class="network-banner" role="status" aria-live="polite">
+    <span id="networkBannerText">أنت حالياً دون اتصال بالإنترنت — يتم الاعتماد على المحتوى المحفوظ محلياً.</span>
+    <button type="button" class="mini-btn" style="background:#ffffff;color:#1a2621;" onclick="syncQuranFromNetwork(true)">إعادة المحاولة</button>
+  </div>
+
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand-box">
+        <div class="brand-badge" aria-hidden="true">
+          <svg width="34" height="34" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="10" width="44" height="44" rx="6" stroke="#f6e7be" stroke-width="2.5"/>
+            <rect x="10" y="10" width="44" height="44" rx="6" stroke="#e5c16c" stroke-width="2.5" transform="rotate(45 32 32)"/>
+            <path d="M18 26 Q25 22 32 27 Q39 22 46 26 V40 Q39 36 32 41 Q25 36 18 40 Z" fill="#fffdf8" stroke="#e5c16c" stroke-width="1.8"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="brand-title">مقرأة أبو نجيب السلمي لتحفيظ القرآن الكريم</h1>
+          <p class="brand-subtitle">قراءة • تفسير • تلاوة • حفظ ذاتي ومراجعة — مجانية بالكامل دون تسجيل</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button type="button" id="themeToggleBtn" class="btn-pill" aria-label="تبديل الوضع الليلي والنهاري">
+          <span id="themeIcon">🌙</span>
+          <span id="themeLabel">الوضع الليلي</span>
+        </button>
+        <button type="button" id="installPwaBtn" class="btn-pill" style="display:none;" aria-label="تثبيت التطبيق على الجهاز">
+          <span>📲</span>
+          <span>تثبيت التطبيق</span>
+        </button>
+        <a href="https://wa.me/967735018955" target="_blank" rel="noopener noreferrer" class="btn-pill btn-whatsapp" aria-label="التواصل مع إدارة المقرأة عبر واتساب">
+          <span>💬</span>
+          <span>واتساب المقرأة (00967735018955)</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="main-nav-wrap">
+    <nav class="main-nav" role="tablist" aria-label="أقسام المقرأة">
+      <button type="button" class="nav-tab active" role="tab" aria-selected="true" data-tab="quranTab" onclick="switchTab('quranTab')">
+        <span>📖</span>
+        <span>المصحف والتفسير</span>
+      </button>
+      <button type="button" class="nav-tab" role="tab" aria-selected="false" data-tab="hifzTab" onclick="switchTab('hifzTab')">
+        <span>🎯</span>
+        <span>الحفظ والتسميع</span>
+      </button>
+      <button type="button" class="nav-tab" role="tab" aria-selected="false" data-tab="audioTab" onclick="switchTab('audioTab')">
+        <span>🎧</span>
+        <span>التلاوات والتحميل</span>
+      </button>
+      <button type="button" class="nav-tab" role="tab" aria-selected="false" data-tab="storageTab" onclick="switchTab('storageTab')">
+        <span>💾</span>
+        <span>التخزين والعمل أوفلاين</span>
+      </button>
+    </nav>
+  </div>
+
+  <main class="container">
+    <section class="bookmark-strip" aria-label="العلامة المرجعية وآخر موضع">
+      <div>
+        <strong>🔖 آخر موضع قراءة:</strong>
+        <span id="bookmarkSummaryText">لم يتم حفظ علامة بعد — ابدأ القراءة وسيتم الحفظ تلقائياً.</span>
+      </div>
+      <div class="ayah-btn-group">
+        <button type="button" class="btn btn-gold" onclick="jumpToBookmark()">الانتقال لآخر موضع</button>
+        <button type="button" class="btn" onclick="saveCurrentBookmark()">حفظ الموضع الحالي</button>
+      </div>
+    </section>
+
+    <section id="quranTab" class="tab-panel active" role="tabpanel" aria-labelledby="tab-quran">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">المصحف الشريف (الرسم العثماني)</h2>
+          <span id="quranSourceBadge" class="tafsir-source-tag">المصدر: مجمع الملك فهد / AlQuran Cloud (quran-uthmani)</span>
+        </div>
+
+        <div class="controls-grid">
+          <div class="field-group">
+            <label class="field-label" for="surahSelect">اختر السورة</label>
+            <select id="surahSelect" onchange="onSurahChange(parseInt(this.value, 10))"></select>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="juzSelect">الانتقال حسب الجزء (١ - ٣٠)</label>
+            <select id="juzSelect" onchange="onJuzChange(parseInt(this.value, 10))"></select>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="hizbSelect">الانتقال حسب الحزب (١ - ٦٠)</label>
+            <select id="hizbSelect" onchange="onHizbChange(parseInt(this.value, 10))"></select>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="tafsirBookSelect">كتاب التفسير المعتمد</label>
+            <select id="tafsirBookSelect" onchange="onTafsirBookChange(this.value)">
+              <option value="ar.muyassar">التفسير الميسّر (مجمع الملك فهد)</option>
+              <option value="ar.jalalayn">تفسير الجلالين</option>
+              <option value="ar.baghawi">تفسير البغوي (معالم التنزيل)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="toolbar-row">
+          <button type="button" class="btn" onclick="adjustFontSize(0.15)">🔍 تكبير الخط (+)</button>
+          <button type="button" class="btn" onclick="adjustFontSize(-0.15)">🔎 تصغير الخط (-)</button>
+          <button type="button" class="btn" onclick="resetFontSize()">إعادة حجم الخط</button>
+          <button type="button" class="btn btn-primary" onclick="playCurrentSurah()">▶️ تشغيل السورة كاملة</button>
+          <button type="button" class="btn" onclick="downloadFullQuranAndTafsir()">⬇️ تنزيل المصحف والتفسير محلياً</button>
+        </div>
+
+        <div class="field-group" style="margin-top: 14px;">
+          <label class="field-label" for="quranSearchInput">بحث عن سورة أو رقم آية أو كلمة في القرآن الكريم</label>
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <input type="search" id="quranSearchInput" placeholder="اكتب كلمة قرآنية أو اسم سورة أو رقم سورة:آية (مثال: البقرة أو ٢:٢٥٥ أو الحمد)..." oninput="performQuranSearch()" />
+            <button type="button" class="btn" onclick="clearSearch()">مسح البحث</button>
+          </div>
+          <div id="searchResultsBox" class="search-results-list" style="display:none;"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div id="surahBanner" class="surah-banner"></div>
+        <div id="ayahsContainer" aria-live="polite"></div>
+        <div class="toolbar-row" style="justify-content: space-between; margin-top: 18px;">
+          <button type="button" class="btn" onclick="navigateSurah(-1)">⏮️ السورة السابقة</button>
+          <button type="button" class="btn btn-primary" onclick="navigateSurah(1)">السورة التالية ⏭️</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="hifzTab" class="tab-panel" role="tabpanel" aria-labelledby="tab-hifz">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">مختبر الحفظ والتسميع الذاتي</h2>
+          <span class="tafsir-source-tag">بدون معلم أو تسجيل — حفظ آمن ومستمر محلياً</span>
+        </div>
+
+        <div class="controls-grid">
+          <div class="field-group">
+            <label class="field-label" for="hifzSurahSelect">السورة المراد حفظها</label>
+            <select id="hifzSurahSelect" onchange="syncHifzAyahLimits()"></select>
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="hifzStartAyah">من الآية رقم</label>
+            <input type="number" id="hifzStartAyah" min="1" value="1" />
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="hifzEndAyah">إلى الآية رقم</label>
+            <input type="number" id="hifzEndAyah" min="1" value="5" />
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="hifzRepeatCount">عدد مرات التكرار للآية</label>
+            <select id="hifzRepeatCount">
+              <option value="1">مرة واحدة</option>
+              <option value="3" selected>٣ مرات</option>
+              <option value="5">٥ مرات</option>
+              <option value="7">٧ مرات</option>
+              <option value="10">١٠ مرات</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="toolbar-row">
+          <button type="button" class="btn btn-primary" onclick="startHifzSession()">بدء جلسة الحفظ</button>
+          <button type="button" class="btn" onclick="listenToCurrentHifzAyah()">🔊 استماع للآية قبل الحفظ</button>
+          <button type="button" class="btn" onclick="toggleHifzTextVisibility()">👁️ إخفاء / إظهار نص الآية</button>
+          <button type="button" class="btn btn-gold" onclick="enableCompletionTest()">✍️ اختبار إكمال بداية الآية</button>
+          <button type="button" class="btn" onclick="advanceHifzAyah()">⏭️ الانتقال التدريجي للآية التالية</button>
+        </div>
+
+        <div id="hifzWorkspace" class="hifz-stage">
+          <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; margin-bottom:8px;">
+            <strong id="hifzCurrentLabel">الآية الحالية: اختر السورة وابدأ الجلسة</strong>
+            <span id="hifzRepeatCounterBadge" class="tafsir-source-tag">التكرار: ٠ / ٣</span>
+          </div>
+
+          <div id="hifzAyahDisplay" class="ayah-text-wrap" style="margin: 12px 0;"></div>
+
+          <div id="completionTestArea" style="display:none; margin-top:12px;">
+            <p class="field-label">أكمل بقية الآية من حفظك ثم تحقق من مطابقتها:</p>
+            <input type="text" id="completionUserInput" placeholder="اكتب بقية الآية هنا..." style="margin: 8px 0;" />
+            <div class="ayah-btn-group">
+              <button type="button" class="btn btn-success" onclick="verifyCompletionAttempt()">تحقق من الإكمال</button>
+              <button type="button" class="btn" onclick="revealFullHifzAyah()">إظهار الآية كاملة</button>
+            </div>
+            <div id="completionFeedback" class="notice-box" style="display:none;"></div>
+          </div>
+
+          <div class="toolbar-row" style="margin-top: 14px;">
+            <button type="button" class="btn btn-success" onclick="markCurrentAyahMemorized()">✅ تم حفظ الآية وإضافتها للإنجاز</button>
+            <button type="button" class="btn btn-danger" onclick="flagCurrentAyahForReview()">📌 تسجيل الآية للمراجعة</button>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div id="hifzCompletionPercent" class="stat-value">0%</div>
+            <div class="stat-label">نسبة الإنجاز في الجلسة</div>
+          </div>
+          <div class="stat-box">
+            <div id="hifzMemorizedCount" class="stat-value">0</div>
+            <div class="stat-label">آيات تم إتمامها</div>
+          </div>
+          <div class="stat-box">
+            <div id="hifzReviewCount" class="stat-value">0</div>
+            <div class="stat-label">آيات تحتاج مراجعة</div>
+          </div>
+        </div>
+        <div class="progress-track" aria-label="شريط نسبة الإنجاز">
+          <div id="hifzProgressBar" class="progress-fill"></div>
+        </div>
+
+        <div class="notice-box">
+          <strong>ملاحظة علمية وتقنية:</strong> يعتمد هذا المختبر على التسميع الذاتي واختبار إكمال النص القرآني الموثق، ولا يدّعي تصحيح مخارج الحروف أو أحكام التجويد آلياً عبر الذكاء الاصطناعي.
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 class="card-title" style="margin-bottom:10px;">📌 سجل الآيات المسجلة للمراجعة</h3>
+        <div id="reviewQueueList"></div>
+      </div>
+
+      <div class="card">
+        <h3 class="card-title" style="margin-bottom:10px;">📅 الخطة اليومية للحفظ وجدول المراجعة الأسبوعي</h3>
+        <div class="controls-grid">
+          <div class="field-group">
+            <label class="field-label" for="dailyAyahTarget">الورد اليومي المستهدف (عدد الآيات)</label>
+            <input type="number" id="dailyAyahTarget" min="1" max="100" value="5" onchange="renderStudySchedules()" />
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="weeklyReviewDays">أيام المراجعة الأسبوعية</label>
+            <select id="weeklyReviewDays" onchange="renderStudySchedules()">
+              <option value="2">يومان أسبوعياً (الخميس والجمعة)</option>
+              <option value="3" selected>٣ أيام أسبوعياً (الثلاثاء، الخميس، الجمعة)</option>
+              <option value="7">مراجعة يومية خفيفة</option>
+            </select>
+          </div>
+        </div>
+        <div id="studySchedulesOutput" class="notice-box"></div>
+      </div>
+    </section>
+
+    <section id="audioTab" class="tab-panel" role="tabpanel" aria-labelledby="tab-audio">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">مكتبة التلاوات الصوتية وإدارة التحميل</h2>
+          <span class="tafsir-source-tag">مصادر صوتية مفتوحة: MP3Quran / EveryAyah</span>
+        </div>
+
+        <div class="controls-grid">
+          <div class="field-group">
+            <label class="field-label" for="reciterSelect">اختر القارئ</label>
+            <select id="reciterSelect" onchange="onReciterChange(this.value)">
+              <option value="alafasy">مشاري راشد العفاسي</option>
+              <option value="minshawi">محمد صديق المنشاوي (مجود / مرتل)</option>
+              <option value="husary">محمود خليل الحصري</option>
+              <option value="sudais">عبد الرحمن السديس</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="audioSurahSelect">السورة الصوتية</label>
+            <select id="audioSurahSelect" onchange="onAudioSurahSelectChange(parseInt(this.value, 10))"></select>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="playbackSpeedSelect">سرعة التشغيل</label>
+            <select id="playbackSpeedSelect" onchange="setPlaybackSpeed(parseFloat(this.value))">
+              <option value="0.75">0.75x (بطيء للحفظ)</option>
+              <option value="1" selected>1.0x (طبيعي)</option>
+              <option value="1.25">1.25x (سريع)</option>
+              <option value="1.5">1.5x</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="controls-grid">
+          <div class="field-group">
+            <label class="field-label" for="rangeStartAyah">تكرار مجموعة آيات — من آية</label>
+            <input type="number" id="rangeStartAyah" min="1" value="1" />
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="rangeEndAyah">تكرار مجموعة آيات — إلى آية</label>
+            <input type="number" id="rangeEndAyah" min="1" value="3" />
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="rangeRepeatTimes">عدد مرات تكرار المجموعة</label>
+            <input type="number" id="rangeRepeatTimes" min="1" max="20" value="3" />
+          </div>
+        </div>
+
+        <div class="toolbar-row">
+          <button type="button" class="btn btn-primary" onclick="playCurrentSurah()">▶️ تشغيل السورة كاملة</button>
+          <button type="button" class="btn" onclick="playRangeRepeat()">🔁 تشغيل وتكرار مجموعة آيات</button>
+          <button type="button" class="btn btn-gold" onclick="downloadSelectedSurahAudio()">⬇️ تنزيل السورة إلى الجهاز</button>
+          <button type="button" class="btn" id="pauseResumeDlBtn" onclick="togglePauseDownload()">⏸️ إيقاف / استئناف التنزيل</button>
+          <button type="button" class="btn" onclick="downloadFullMushafAudioPrompt()">📦 تنزيل المصحف كاملاً (اختياري)</button>
+          <button type="button" class="btn btn-danger" onclick="deleteSelectedSurahAudio()">🗑️ حذف تلاوة السورة المحفوظة</button>
+        </div>
+
+        <div id="downloadProgressBox" class="notice-box" style="margin-top:14px;">
+          <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+            <strong id="downloadStatusText">حالة التنزيل: جاهز</strong>
+            <span id="downloadSizeText">الحجم: ٠ ميجابايت</span>
+          </div>
+          <div class="progress-track">
+            <div id="downloadProgressBar" class="progress-fill"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 class="card-title" style="margin-bottom:10px;">التلاوات المحفوظة محلياً على الجهاز</h3>
+        <div id="downloadedAudioList"></div>
+      </div>
+    </section>
+
+    <section id="storageTab" class="tab-panel" role="tabpanel" aria-labelledby="tab-storage">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">إدارة التخزين المحلي والعمل دون إنترنت</h2>
+          <span class="tafsir-source-tag">IndexedDB + Cache API + Service Worker</span>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div id="storageUsedVal" class="stat-value">جارٍ الحساب...</div>
+            <div class="stat-label">المساحة المستخدمة تقريباً</div>
+          </div>
+          <div class="stat-box">
+            <div id="storageQuotaVal" class="stat-value">جارٍ الحساب...</div>
+            <div class="stat-label">السعة المتاحة للمتصفح</div>
+          </div>
+          <div class="stat-box">
+            <div id="cachedSurahsCountVal" class="stat-value">0 / 114</div>
+            <div class="stat-label">السور المخزنة في قاعدة البيانات</div>
+          </div>
+        </div>
+
+        <div class="toolbar-row">
+          <button type="button" class="btn btn-primary" onclick="downloadFullQuranAndTafsir()">⬇️ تنزيل النص القرآني والتفسير كاملاً</button>
+          <button type="button" class="btn" onclick="refreshStorageStats()">🔄 تحديث حالة التخزين</button>
+          <button type="button" class="btn btn-danger" onclick="clearAllAudioCache()">🗑️ مسح جميع التلاوات الصوتية المحفوظة</button>
+        </div>
+
+        <div class="notice-box">
+          <strong>تنويه مهم حول سعة التخزين واستمراريته:</strong> يعتمد حفظ البيانات داخل المتصفح على IndexedDB وCache API، ولا يُعدّ تخزيناً دائماً إلى الأبد؛ إذ قد يقوم المتصفح أو نظام التشغيل بإخلاء بعض البيانات المؤقتة عند امتلاء ذاكرة الهاتف أو عند مسح بيانات المتصفح يدوياً. يُنصح بتنزيل التلاوات الصوتية حسب الحاجة وإزالة السور المنتهية لتوفير المساحة.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <aside class="audio-dock" aria-label="مشغل التلاوة الصوتية">
+    <div class="audio-dock-inner">
+      <div class="audio-info">
+        <div id="nowPlayingTitle" class="audio-now-playing">مشغل التلاوة جاهز</div>
+        <div id="nowPlayingSub" class="audio-sub-status">اختر آية أو سورة للتشغيل</div>
+      </div>
+
+      <div class="audio-controls">
+        <button type="button" class="mini-btn" onclick="playPrevAyah()" aria-label="الآية السابقة">⏮️ السابقة</button>
+        <button type="button" class="btn btn-primary" id="playPauseBtn" onclick="togglePlayPause()" aria-label="تشغيل أو إيقاف مؤقت">▶️ تشغيل</button>
+        <button type="button" class="mini-btn" onclick="playNextAyah()" aria-label="الآية التالية">التالية ⏭️</button>
+        <button type="button" class="mini-btn" id="loopAyahBtn" onclick="toggleAyahLoop()" aria-pressed="false">🔂 تكرار الآية: إيقاف</button>
+        <button type="button" class="mini-btn" onclick="stopAudioPlayback()">⏹️ إيقاف</button>
+      </div>
+    </div>
+  </aside>
+
+  <div id="toastEl" class="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    "use strict";
+
+    const SURAHS_META = [
+      [1,"الفاتحة",7,"مكية",1,1],[2,"البقرة",286,"مدنية",1,1],[3,"آل عمران",200,"مدنية",3,6],[4,"النساء",176,"مدنية",4,8],
+      [5,"المائدة",120,"مدنية",6,11],[6,"الأنعام",165,"مكية",7,13],[7,"الأعراف",206,"مكية",8,16],[8,"الأنفال",75,"مدنية",9,18],
+      [9,"التوبة",129,"مدنية",10,19],[10,"يونس",109,"مكية",11,21],[11,"هود",123,"مكية",11,22],[12,"يوسف",111,"مكية",12,24],
+      [13,"الرعد",43,"مدنية",13,25],[14,"إبراهيم",52,"مكية",13,26],[15,"الحجر",99,"مكية",14,27],[16,"النحل",128,"مكية",14,27],
+      [17,"الإسراء",111,"مكية",15,29],[18,"الكهف",110,"مكية",15,30],[19,"مريم",98,"مكية",16,31],[20,"طه",135,"مكية",16,32],
+      [21,"الأنبياء",112,"مكية",17,33],[22,"الحج",78,"مدنية",17,34],[23,"المؤمنون",118,"مكية",18,34],[24,"النور",64,"مدنية",18,35],
+      [25,"الفرقان",77,"مكية",18,36],[26,"الشعراء",227,"مكية",19,36],[27,"النمل",93,"مكية",19,37],[28,"القصص",88,"مكية",20,39],
+      [29,"العنكبوت",69,"مكية",20,40],[30,"الروم",60,"مكية",21,41],[31,"لقمان",34,"مكية",21,41],[32,"السجدة",30,"مكية",21,42],
+      [33,"الأحزاب",73,"مدنية",21,42],[34,"سبأ",54,"مكية",22,43],[35,"فاطر",45,"مكية",22,44],[36,"يس",83,"مكية",22,44],
+      [37,"الصافات",182,"مكية",23,45],[38,"ص",88,"مكية",23,46],[39,"الزمر",75,"مكية",23,46],[40,"غافر",85,"مكية",24,47],
+      [41,"فصلت",54,"مكية",24,48],[42,"الشورى",53,"مكية",25,49],[43,"الزخرف",89,"مكية",25,49],[44,"الدخان",59,"مكية",25,50],
+      [45,"الجاثية",37,"مكية",25,50],[46,"الأحقاف",35,"مكية",26,50],[47,"محمد",38,"مدنية",26,51],[48,"الفتح",29,"مدنية",26,51],
+      [49,"الحجرات",18,"مدنية",26,52],[50,"ق",45,"مكية",26,52],[51,"الذاريات",60,"مكية",26,52],[52,"الطور",49,"مكية",27,52],
+      [53,"النجم",62,"مكية",27,53],[54,"القمر",55,"مكية",27,53],[55,"الرحمن",78,"مدنية",27,53],[56,"الواقعة",96,"مكية",27,54],
+      [57,"الحديد",29,"مدنية",27,54],[58,"المجادلة",22,"مدنية",28,55],[59,"الحشر",24,"مدنية",28,55],[60,"الممتحنة",13,"مدنية",28,55],
+      [61,"الصف",14,"مدنية",28,56],[62,"الجمعة",11,"مدنية",28,56],[63,"المنافقون",11,"مدنية",28,56],[64,"التغابن",18,"مدنية",28,56],
+      [65,"الطلاق",12,"مدنية",28,57],[66,"التحريم",12,"مدنية",28,57],[67,"الملك",30,"مكية",29,57],[68,"القلم",52,"مكية",29,58],
+      [69,"الحاقة",52,"مكية",29,58],[70,"المعارج",44,"مكية",29,59],[71,"نوح",28,"مكية",29,59],[72,"الجن",28,"مكية",29,59],
+      [73,"المزمل",20,"مكية",29,60],[74,"المدثر",56,"مكية",29,60],[75,"القيامة",40,"مكية",29,60],[76,"الإنسان",31,"مدنية",29,60],
+      [77,"المرسلات",50,"مكية",29,60],[78,"النبأ",40,"مكية",30,60],[79,"النازعات",46,"مكية",30,60],[80,"عبس",42,"مكية",30,60],
+      [81,"التكوير",29,"مكية",30,60],[82,"الإنفطار",19,"مكية",30,60],[83,"المطففين",36,"مكية",30,60],[84,"الانشقاق",25,"مكية",30,60],
+      [85,"البروج",22,"مكية",30,60],[86,"الطارق",17,"مكية",30,60],[87,"الأعلى",19,"مكية",30,60],[88,"الغاشية",26,"مكية",30,60],
+      [89,"الفجر",30,"مكية",30,60],[90,"البلد",20,"مكية",30,60],[91,"الشمس",15,"مكية",30,60],[92,"الليل",21,"مكية",30,60],
+      [93,"الضحى",11,"مكية",30,60],[94,"الشرح",8,"مكية",30,60],[95,"التين",8,"مكية",30,60],[96,"العلق",19,"مكية",30,60],
+      [97,"القدر",5,"مكية",30,60],[98,"البينة",8,"مدنية",30,60],[99,"الزلزلة",8,"مدنية",30,60],[100,"العاديات",11,"مكية",30,60],
+      [101,"القارعة",11,"مكية",30,60],[102,"التكاثر",8,"مكية",30,60],[103,"العصر",3,"مكية",30,60],[104,"الهمزة",9,"مكية",30,60],
+      [105,"الفيل",5,"مكية",30,60],[106,"قريش",4,"مكية",30,60],[107,"الماعون",7,"مكية",30,60],[108,"الكوثر",3,"مكية",30,60],
+      [109,"الكافرون",6,"مكية",30,60],[110,"النصر",3,"مدنية",30,60],[111,"المسد",5,"مكية",30,60],[112,"الإخلاص",4,"مكية",30,60],
+      [113,"الفلق",5,"مكية",30,60],[114,"الناس",6,"مكية",30,60]
+    ];
+
+    const BUILTIN_QURAN_SEED = {
+      1: [
+        { numberInSurah: 1, text: "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ" },
+        { numberInSurah: 2, text: "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ" },
+        { numberInSurah: 3, text: "الرَّحْمَٰنِ الرَّحِيمِ" },
+        { numberInSurah: 4, text: "مَالِكِ يَوْمِ الدِّينِ" },
+        { numberInSurah: 5, text: "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ" },
+        { numberInSurah: 6, text: "اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ" },
+        { numberInSurah: 7, text: "صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ" }
+      ],
+      112: [
+        { numberInSurah: 1, text: "قُلْ هُوَ اللَّهُ أَحَدٌ" },
+        { numberInSurah: 2, text: "اللَّهُ الصَّمَدُ" },
+        { numberInSurah: 3, text: "لَمْ يَلِدْ وَلَمْ يُولَدْ" },
+        { numberInSurah: 4, text: "وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ" }
+      ],
+      113: [
+        { numberInSurah: 1, text: "قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ" },
+        { numberInSurah: 2, text: "مِنْ شَرِّ مَا خَلَقَ" },
+        { numberInSurah: 3, text: "وَمِنْ شَرِّ غَاسِقٍ إِذَا وَقَبَ" },
+        { numberInSurah: 4, text: "وَمِنْ شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ" },
+        { numberInSurah: 5, text: "وَمِنْ شَرِّ حَاسِدٍ إِذَا حَسَدَ" }
+      ],
+      114: [
+        { numberInSurah: 1, text: "قُلْ أَعُوذُ بِرَبِّ النَّاسِ" },
+        { numberInSurah: 2, text: "مَلِكِ النَّاسِ" },
+        { numberInSurah: 3, text: "إِلَٰهِ النَّاسِ" },
+        { numberInSurah: 4, text: "مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِ" },
+        { numberInSurah: 5, text: "الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ" },
+        { numberInSurah: 6, text: "مِنَ الْجِنَّةِ وَالنَّاسِ" }
+      ]
+    };
+
+    const BUILTIN_TAFSIR_SEED = {
+      "1:1": "أبتدئ قراءة القرآن مستعيناً بالله وحده؛ فـ(الله) هو المألوه المعبود بحق، و(الرحمن) ذو الرحمة العامة التي وسعت كل شيء، و(الرحيم) بالمؤمنين — المصدر: التفسير الميسّر.",
+      "1:2": "الثناء الكامل على الله بصفاته التي كلها أوصاف كمال وبنعمه الظاهرة والباطنة؛ فهو مربي جميع الخلق بنعمه — المصدر: التفسير الميسّر.",
+      "1:3": "الرحمن الرحيم اسمان من أسماء الله تعالى يدلان على اتصافه بالرحمة الواسعة العظيمة — المصدر: التفسير الميسّر.",
+      "1:4": "هو وحده مالك يوم الجزاء والحساب، وهو يوم القيامة الذي يُجازى فيه كل نفس بما كسبت — المصدر: التفسير الميسّر.",
+      "1:5": "نخصّك وحدك بالعبادة فلا نعبد غيرك، وبك وحدك نستعين في جميع أمورنا — المصدر: التفسير الميسّر.",
+      "1:6": "دلّنا وأرشدنا ووفقنا إلى الطريق الواضح المستقيم الذي لا اعوجاج فيه، وهو الإسلام — المصدر: التفسير الميسّر.",
+      "1:7": "طريق الذين أنعمت عليهم من النبيين والصديقين والشهداء والصالحين، غير طريق المغضوب عليهم ولا طريق الضالين — المصدر: التفسير الميسّر."
+    };
+
+    const RECITERS = {
+      alafasy: {
+        name: "مشاري راشد العفاسي",
+        surahBase: "https://server8.mp3quran.net/afs/",
+        ayahBase: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/"
+      },
+      minshawi: {
+        name: "محمد صديق المنشاوي",
+        surahBase: "https://server10.mp3quran.net/minsh/",
+        ayahBase: "https://cdn.islamic.network/quran/audio/128/ar.minshawi/"
+      },
+      husary: {
+        name: "محمود خليل الحصري",
+        surahBase: "https://server13.mp3quran.net/husr/",
+        ayahBase: "https://cdn.islamic.network/quran/audio/128/ar.husary/"
+      },
+      sudais: {
+        name: "عبد الرحمن السديس",
+        surahBase: "https://server11.mp3quran.net/sds/",
+        ayahBase: "https://cdn.islamic.network/quran/audio/128/ar.abdurrahmaansudais/"
+      }
+    };
+
+    const DB_NAME = "MaqraaAlSulamiDB";
+    const DB_VERSION = 1;
+    let dbInstance = null;
+
+    const state = {
+      currentSurah: 1,
+      currentAyah: 1,
+      tafsirBook: "ar.muyassar",
+      openTafsirKey: null,
+      fontSizeRem: 1.75,
+      theme: "light",
+      bookmark: null,
+      hifz: {
+        surah: 1,
+        startAyah: 1,
+        endAyah: 7,
+        currentAyah: 1,
+        repeatTarget: 3,
+        repeatDone: 0,
+        hiddenText: false,
+        completionMode: false,
+        memorizedKeys: [],
+        reviewQueue: []
+      },
+      audio: {
+        reciter: "alafasy",
+        surah: 1,
+        ayah: 1,
+        mode: "surah",
+        loopAyah: false,
+        speed: 1.0,
+        rangeStart: 1,
+        rangeEnd: 3,
+        rangeRepeatsLeft: 0,
+        isPlaying: false
+      },
+      download: {
+        paused: false,
+        cancelled: false
+      }
+    };
+
+    const audioPlayer = new Audio();
+    audioPlayer.preload = "none";
+
+    function showToast(msg) {
+      const el = document.getElementById("toastEl");
+      el.textContent = sanitizeText(msg);
+      el.classList.add("show");
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(() => el.classList.remove("show"), 3200);
+    }
+
+    function sanitizeText(str) {
+      if (typeof str !== "string") return "";
+      return str
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function normalizeArabicForSearch(text) {
+      if (!text) return "";
+      return text
+        .replace(/[\u064B-\u065F\u0670\u06D6-\u06ED]/g, "")
+        .replace(/[إأآا]/g, "ا")
+        .replace(/ى/g, "ي")
+        .replace(/ؤ/g, "و")
+        .replace(/ئ/g, "ي")
+        .replace(/ة/g, "ه")
+        .trim();
+    }
+
+    function toArabicDigits(num) {
+      const digits = ["٠", "١", "٢", "٣", "٤", "٥", "٦", "٧", "٨", "٩"];
+      return String(num).replace(/\d/g, (d) => digits[Number(d)]);
+    }
+
+    function openMaqraaDB() {
+      return new Promise((resolve, reject) => {
+        if (dbInstance) return resolve(dbInstance);
+        const req = indexedDB.open(DB_NAME, DB_VERSION);
+        req.onupgradeneeded = (e) => {
+          const db = e.target.result;
+          if (!db.objectStoreNames.contains("surahs")) {
+            db.createObjectStore("surahs", { keyPath: "surahNumber" });
+          }
+          if (!db.objectStoreNames.contains("tafsirs")) {
+            db.createObjectStore("tafsirs", { keyPath: "id" });
+          }
+          if (!db.objectStoreNames.contains("audioMeta")) {
+            db.createObjectStore("audioMeta", { keyPath: "id" });
+          }
+        };
+        req.onsuccess = (e) => {
+          dbInstance = e.target.result;
+          resolve(dbInstance);
+        };
+        req.onerror = (e) => reject(e.target.error);
+      });
+    }
+
+    async function idbPut(storeName, value) {
+      const db = await openMaqraaDB();
+      return new Promise((resolve, reject) => {
+        const tx = db.transaction(storeName, "readwrite");
+        const store = tx.objectStore(storeName);
+        const req = store.put(value);
+        req.onsuccess = () => resolve(true);
+        req.onerror = () => reject(req.error);
+      });
+    }
+
+    async function idbGet(storeName, key) {
+      const db = await openMaqraaDB();
+      return new Promise((resolve, reject) => {
+        const tx = db.transaction(storeName, "readonly");
+        const store = tx.objectStore(storeName);
+        const req = store.get(key);
+        req.onsuccess = () => resolve(req.result || null);
+        req.onerror = () => reject(req.error);
+      });
+    }
+
+    async function idbGetAllKeys(storeName) {
+      const db = await openMaqraaDB();
+      return new Promise((resolve, reject) => {
+        const tx = db.transaction(storeName, "readonly");
+        const store = tx.objectStore(storeName);
+        const req = store.getAllKeys();
+        req.onsuccess = () => resolve(req.result || []);
+        req.onerror = () => reject(req.error);
+      });
+    }
+
+    async function idbDelete(storeName, key) {
+      const db = await openMaqraaDB();
+      return new Promise((resolve, reject) => {
+        const tx = db.transaction(storeName, "readwrite");
+        const store = tx.objectStore(storeName);
+        const req = store.delete(key);
+        req.onsuccess = () => resolve(true);
+        req.onerror = () => reject(req.error);
+      });
+    }
+
+    function persistLocalState() {
+      try {
+        localStorage.setItem("maqraa_state_v1", JSON.stringify({
+          currentSurah: state.currentSurah,
+          currentAyah: state.currentAyah,
+          tafsirBook: state.tafsirBook,
+          fontSizeRem: state.fontSizeRem,
+          theme: state.theme,
+          bookmark: state.bookmark,
+          hifz: state.hifz,
+          audio: {
+            reciter: state.audio.reciter,
+            surah: state.audio.surah,
+            ayah: state.audio.ayah,
+            loopAyah: state.audio.loopAyah,
+            speed: state.audio.speed,
+            rangeStart: state.audio.rangeStart,
+            rangeEnd: state.audio.rangeEnd
+          }
+        }));
+      } catch (err) {
+        console.warn("تعذر حفظ الحالة في localStorage:", err);
+      }
+    }
+
+    function loadLocalState() {
+      try {
+        const raw = localStorage.getItem("maqraa_state_v1");
+        if (!raw) return;
+        const parsed = JSON.parse(raw);
+        if (parsed.currentSurah) state.currentSurah = Number(parsed.currentSurah);
+        if (parsed.currentAyah) state.currentAyah = Number(parsed.currentAyah);
+        if (parsed.tafsirBook) state.tafsirBook = String(parsed.tafsirBook);
+        if (parsed.fontSizeRem) state.fontSizeRem = Number(parsed.fontSizeRem);
+        if (parsed.theme === "dark" || parsed.theme === "light") state.theme = parsed.theme;
+        if (parsed.bookmark) state.bookmark = parsed.bookmark;
+        if (parsed.hifz && typeof parsed.hifz === "object") {
+          state.hifz = Object.assign({}, state.hifz, parsed.hifz);
+        }
+        if (parsed.audio && typeof parsed.audio === "object") {
+          state.audio = Object.assign({}, state.audio, parsed.audio);
+        }
+      } catch (err) {
+        console.warn("تعذر قراءة الحالة المحفوظة:", err);
+      }
+    }
+
+    function applyTheme(theme) {
+      state.theme = theme;
+      document.documentElement.setAttribute("data-theme", theme);
+      document.getElementById("themeIcon").textContent = theme === "dark" ? "☀️" : 
