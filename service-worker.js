@@ -4,7 +4,7 @@
  */
 'use strict';
 
-const CACHE_VERSION = 'maqraa-al-sulami-v1.0.2';
+const CACHE_VERSION = 'maqraa-al-sulami-v1.0.3';
 const APP_SHELL_CACHE = `${CACHE_VERSION}-shell`;
 const QURAN_DATA_CACHE = `${CACHE_VERSION}-quran-data`;
 const AUDIO_MEDIA_CACHE = `${CACHE_VERSION}-audio-media`;
@@ -23,7 +23,7 @@ const ALLOWED_EXTERNAL_HOSTS = new Set([
 ]);
 
 // لا نطلب ملفات صور PNG غير الموجودة في المستودع.
-const CORE_ASSETS = ['./', './index.html', './service-worker.js', './icon.svg'];
+const CORE_ASSETS = ['./', './index.html', './service-worker.js', './icon.svg', './manifest.json'];
 
 self.addEventListener('install', (event) => {
   event.waitUntil((async () => {
