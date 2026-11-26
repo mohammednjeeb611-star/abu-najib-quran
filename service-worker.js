@@ -88,7 +88,7 @@ function rewriteHtmlSecurity(response) {
     ].join('; ');
 
     const patched = html.replace(
-      /<meta\\s+http-equiv=(["'])Content-Security-Policy\\1\\s+content=(["'])[^]*?\\2\\s*\\/?>(?=\\s*<)/i,
+      /<meta[^>]*http-equiv=["']Content-Security-Policy["'][^>]*>/i,
       '<meta http-equiv="Content-Security-Policy" content="' + policy + '">'
     );
 
@@ -132,7 +132,11 @@ self.addEventListener('fetch', (event) => {
     event.respondWith((async () => {
       try {
         const response = await fetch(request);
-        if (response.ok) await cacheResponse(APP_SHELL_CACHE, './index.html', response);
+        if (response.ok) {
+          const safeResponse = await rewriteHtmlSecurity(response.clone());
+          await cacheResponse(APP_SHELL_CACHE, './index.html', safeResponse.clone());
+          return safeResponse;
+        }
         return response;
       } catch (_) {
         return (await caches.match('./index.html')) ||
